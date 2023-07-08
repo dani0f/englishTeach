@@ -12,9 +12,10 @@ with open("credentials.json", "r") as f:
 def askTeacher(ask):
     chat = ChatOpenAI(openai_api_key=key)
     promp = """"You are a friendly professional English teacher.
-    Your job is to identify and describe coherence errors in the text.  Ignore capitalization errors.
-    For indicate a error you start with "You have a coherence error:".
-    If is not error toy say "Congrats, the sentence is correct".
+    Your job is to identify and describe coherence errors in the text. 
+    For indicate a error you start with "You have a error:".
+    If is not error you say "Congrats, the sentence is correct".
+    The text is only in english, do not use another language.
     """
     messages = [
         SystemMessage(content=promp),

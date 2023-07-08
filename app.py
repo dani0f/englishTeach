@@ -29,7 +29,7 @@ if len(audio) > 0:
     wav_file.write(audio.tobytes())
     
     def transcribe(file):
-        result = model.transcribe(file)
+        result = model.transcribe(file, language="en")
         return result["text"]
 
 if st.button('Correct the sentences'):
