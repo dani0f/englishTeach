@@ -16,11 +16,16 @@ with open("credentials.json", "r") as f:
 st.title("Audio Recorder")
 audio = audiorecorder("Click to record", "Recording...")
 
+# Initialize message history (stored in Streamlit session state to maintain between interactions)
+if "message_history" not in st.session_state:
+    st.session_state.message_history = []
+
 @st.cache_data
 def load_model():
     model = whisper.load_model("base")
     return model
 
+# Handle audio recording
 if isinstance(audio, AudioSegment):
     # Convert AudioSegment to byte stream
     audio_bytes_io = BytesIO()
@@ -45,11 +50,21 @@ if isinstance(audio, AudioSegment):
         with st.spinner("Transcribing and correcting..."):
             # Transcribe the saved mp3 file
             transcription = transcribe("audio.mp3")
-            # Get the correction from the teacherAgent
+            
+            # Append the transcription to the message history as a new HumanMessage
+            st.session_state.message_history.append(f"User: {transcription}")
+            
+            # Get the correction from the teacherAgent with the updated history
             result = askTeacher(transcription)
+            st.session_state.message_history.append(f"Agent: {result}")
 
             # Display results
             st.write("Transcription: ", transcription)
             st.write("Correction: ", result)
+
+# Display the message history
+st.subheader("Conversation History")
+for message in st.session_state.message_history:
+    st.write(message)
 else:
     st.write("Please record some audio first.")
