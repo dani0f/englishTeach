@@ -5,7 +5,10 @@ import openai
 from audiorecorder import audiorecorder
 import whisper
 from teacherAgent import askTeacher
+from io import BytesIO
+from pydub import AudioSegment
 
+# Load API key
 with open("credentials.json", "r") as f:
     api = json.load(f)
     key = api["openai"]
@@ -13,50 +16,40 @@ with open("credentials.json", "r") as f:
 st.title("Audio Recorder")
 audio = audiorecorder("Click to record", "Recording...")
 
-
-
 @st.cache_data
 def load_model():
     model = whisper.load_model("base")
     return model
 
-if len(audio) > 0:
-    # To play audio in frontend:
-    st.audio(audio.tobytes())
-    
-    # To save audio to a file:
-    wav_file = open("audio.mp3", "wb")
-    wav_file.write(audio.tobytes())
-    
+if isinstance(audio, AudioSegment):
+    # Convert AudioSegment to byte stream
+    audio_bytes_io = BytesIO()
+    audio.export(audio_bytes_io, format="mp3")
+    audio_bytes = audio_bytes_io.getvalue()
+
+    # Play the audio in the frontend
+    st.audio(audio_bytes)
+
+    # Save the audio to an mp3 file
+    with open("audio.mp3", "wb") as wav_file:
+        wav_file.write(audio_bytes)
+
+    # Transcription function
     def transcribe(file):
+        model = load_model()
         result = model.transcribe(file, language="en")
         return result["text"]
 
-if st.button('Correct the sentences'):
+    # Button to correct the transcription
+    if st.button('Correct the sentences'):
+        with st.spinner("Transcribing and correcting..."):
+            # Transcribe the saved mp3 file
+            transcription = transcribe("audio.mp3")
+            # Get the correction from the teacherAgent
+            result = askTeacher(transcription)
 
-    # Cargar el archivo de audio
-    audio_file = open("audio.mp3", "rb")
-    # Leer el contenido del archivo de audio
-    audio_content = audio_file.read()
-    # Definir el prompt
-    model = load_model()
-
-    with st.spinner("waiting"):
-        transcription = transcribe("audio.mp3")
-        result = askTeacher(transcription)
-        st.write(result)
-        print(result)
-        with st.chat_message("result"):
-            st.write(transcription)
-            st.write("Hello 👋, " + result)
-
-
-
-
-
-
-
-
-
-
-
+            # Display results
+            st.write("Transcription: ", transcription)
+            st.write("Correction: ", result)
+else:
+    st.write("Please record some audio first.")

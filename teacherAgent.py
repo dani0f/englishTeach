@@ -11,18 +11,19 @@ with open("credentials.json", "r") as f:
 
 def askTeacher(ask):
     chat = ChatOpenAI(openai_api_key=key)
-    promp = """"You are a friendly professional English teacher.
-    Your job is to identify and describe coherence errors in the text. 
-    For indicate a error you start with "You have a error:".
-    If is not error you say "Congrats, the sentence is correct".
-    The text is only in english, do not use another language.
-    """
+    promp = (f"This is a transcribed text from a customer's audio order in a restaurant. "
+                              f"Your task is to interpret this order, clearly identify the dishes, drinks, and any additional instructions "
+                              f"(such as ingredient changes, cooking specifications, or preferences). "
+                              f"If there are transcription errors or unclear phrases, use the context to deduce the intent. "
+                              f"Return the order structured as a clear list of dishes and drinks, including the customer's additional notes.")
     messages = [
         SystemMessage(content=promp),
         HumanMessage(content=ask)
     ]
     return chat(messages).content
  
+
+
 
 
 
