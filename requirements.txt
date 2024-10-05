@@ -1,0 +1,6 @@
+streamlit
+soundfile
+openai
+audiorecorder
+whisper
+pydub
