@@ -1,0 +1,90 @@
+[
+    {
+      "id": "a4eabe8b-e9c4-4f1e-88c7-64a73e4889a4",
+      "name": "Margherita Pizza",
+      "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+      "price": 999,
+      "tags": ["vegetarian", "pizza", "main course"],
+      "picture": "https://example.com/images/margherita_pizza.jpg"
+    },
+    {
+      "id": "f98c1c77-4c3f-4b0d-a69e-63d847c0b25a",
+      "name": "Spaghetti Carbonara",
+      "description": "Spaghetti tossed in a creamy sauce with pancetta and parmesan.",
+      "price": 1299,
+      "tags": ["pasta", "main course", "contains meat"],
+      "picture": "https://example.com/images/spaghetti_carbonara.jpg"
+    },
+    {
+      "id": "6e8a3543-5738-4f76-8676-fc34dcd3f962",
+      "name": "Caesar Salad",
+      "description": "Crisp romaine lettuce, croutons, and parmesan cheese with Caesar dressing.",
+      "price": 749,
+      "tags": ["salad", "vegetarian", "starter"],
+      "picture": "https://example.com/images/caesar_salad.jpg"
+    },
+    {
+      "id": "fbd5eae1-67b8-41ab-b0be-1089c77bfa9c",
+      "name": "Grilled Chicken Sandwich",
+      "description": "Juicy grilled chicken breast with lettuce, tomato, and mayo on a toasted bun.",
+      "price": 1049,
+      "tags": ["sandwich", "contains meat", "main course"],
+      "picture": "https://example.com/images/grilled_chicken_sandwich.jpg"
+    },
+    {
+      "id": "2fcd3b70-b30c-4c44-b59d-9c99c7a4629e",
+      "name": "Chocolate Lava Cake",
+      "description": "Decadent chocolate cake with a molten chocolate center, served with vanilla ice cream.",
+      "price": 699,
+      "tags": ["dessert", "chocolate"],
+      "picture": "https://example.com/images/chocolate_lava_cake.jpg"
+    },
+    {
+      "id": "c272d3ef-d045-47b7-b027-867b8e54c2a3",
+      "name": "Iced Coffee",
+      "description": "Refreshing iced coffee with a hint of vanilla and cream.",
+      "price": 399,
+      "tags": ["beverage", "coffee"],
+      "picture": "https://example.com/images/iced_coffee.jpg"
+    },
+    {
+      "id": "b0b83673-d646-4c71-8326-f4407c802f56",
+      "name": "Lemonade",
+      "description": "Freshly squeezed lemonade, served chilled.",
+      "price": 299,
+      "tags": ["beverage", "non-alcoholic"],
+      "picture": "https://example.com/images/lemonade.jpg"
+    },
+    {
+      "id": "21a6e623-70e4-4a0f-b25d-cf9130af31a4",
+      "name": "Mojito",
+      "description": "Refreshing cocktail with mint, lime, and soda water.",
+      "price": 850,
+      "tags": ["beverage", "cocktail", "contains alcohol"],
+      "picture": "https://example.com/images/mojito.jpg"
+    },
+    {
+      "id": "f70e9d9f-5864-4b4a-85a1-24075aafcf5f",
+      "name": "Fruit Smoothie",
+      "description": "Blend of fresh fruits and yogurt, served chilled.",
+      "price": 450,
+      "tags": ["beverage", "smoothie", "vegetarian"],
+      "picture": "https://example.com/images/fruit_smoothie.jpg"
+    },
+    {
+      "id": "a6fa5b1c-5bc5-4741-bb3a-073ba0c93e37",
+      "name": "Hot Chocolate",
+      "description": "Rich and creamy hot chocolate topped with whipped cream.",
+      "price": 350,
+      "tags": ["beverage", "dessert"],
+      "picture": "https://example.com/images/hot_chocolate.jpg"
+    },
+    {
+      "id": "2e614fe8-6db4-4d56-bcb3-2ae868917a83",
+      "name": "Red Wine",
+      "description": "A glass of rich red wine, perfect for pairing with dinner.",
+      "price": 900,
+      "tags": ["beverage", "wine", "contains alcohol"],
+      "picture": "https://example.com/images/red_wine.jpg"
+    }
+  ]

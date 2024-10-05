@@ -7,6 +7,7 @@ import whisper
 from teacherAgent import askTeacher
 from io import BytesIO
 from pydub import AudioSegment
+from getMenuSting import getMenu
 
 # Load API key
 with open("credentials.json", "r") as f:
@@ -14,6 +15,8 @@ with open("credentials.json", "r") as f:
     key = api["openai"]
 
 st.title("Audio Recorder")
+st.text(getMenu())
+
 audio = audiorecorder("Click to record", "Recording...")
 
 # Initialize message history (stored in Streamlit session state to maintain between interactions)
@@ -56,6 +59,16 @@ if isinstance(audio, AudioSegment):
             
             # Get the correction from the teacherAgent with the updated history
             result = askTeacher(transcription)
+            # If you want to handle the possibility of an empty JSON response
+            try:
+                # Convert the response string to a JSON object (Python dictionary)
+                json_object = json.loads(result)
+            except json.JSONDecodeError:
+                # Handle the case where the response is not valid JSON
+                json_object = {"items": []}
+
+            # Now json_object is a Python dictionary representing the JSON data
+            print(json_object)
             st.session_state.message_history.append(f"Agent: {result}")
 
             # Display results
@@ -68,3 +81,6 @@ for message in st.session_state.message_history:
     st.write(message)
 else:
     st.write("Please record some audio first.")
+
+
+# [{agent:"text1","user":"text"}, {agent: "text2","user":"text"}]
